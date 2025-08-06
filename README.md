@@ -1,5 +1,5 @@
 # 👷UNDER CONSTRUCTION🚧
-
+📒 Follow the build journal here: [Trackly Application Project Tracking Notes](https://docs.google.com/document/d/1pM47Y0Y7zOXwAYyp2sx88yvzigafBUmGlag03x0tRdM/edit?usp=sharing)
 ```markdown
 # 🎯 Trackly — Job Application Tracker
 
