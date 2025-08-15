@@ -71,6 +71,12 @@ manage stages like “Applied” or “Interviewing”, and visualize job search
 │   │   ├── static/
 │   │   └── application.properties
 │   └── test/
+├── db/
+│   └── init/
+│       ├── trackly_schema.sql
+│       └── trackly_seed_data.sql
+├── docker-compose.yml
+
 
 ````
 

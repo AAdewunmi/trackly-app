@@ -1,4 +1,4 @@
-version: "3.8"
+
 services:
   postgres:
     image: postgres:16
@@ -11,8 +11,7 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - ./trackly_postgresql_schema.sql:/docker-entrypoint-initdb.d/01_trackly_schema.sql
-      - ./trackly_seed_data.sql:/docker-entrypoint-initdb.d/02_trackly_seed_data.sql
+      - ./db/init:/docker-entrypoint-initdb.d
     networks:
       - trackly_net
 
@@ -20,7 +19,7 @@ services:
     image: dpage/pgadmin4:8
     container_name: trackly_pgadmin
     environment:
-      PGADMIN_DEFAULT_EMAIL: admin@trackly.local
+      PGADMIN_DEFAULT_EMAIL: admin@trackly.com
       PGADMIN_DEFAULT_PASSWORD: admin123
     ports:
       - "8081:80"
