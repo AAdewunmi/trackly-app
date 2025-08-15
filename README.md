@@ -22,12 +22,27 @@ manage stages like “Applied” or “Interviewing”, and visualize job search
 - 🚀 Deployed to [Your Host] (e.g., Render, Railway, etc.)
 
 ---
-
+```
 ## 📸 Screenshots
 
-| Dashboard View                        | Job Entry Form                        |
+Week 1 Task: Set up database, schema and seed data loaded, pgAdmin working (I am officially past the hardest infra setup hurdle.😎)
+
+- Command Line (Docker Compose + PostgreSQL database)
+
+<img width="930" height="548" alt="Image" src="https://github.com/user-attachments/assets/5d85fe9f-ab6f-4e9f-b198-684a457aad94" />
+
+- pgAdmin (GUI to view PostgreSQL database)
+
+<img width="1909" height="889" alt="Image" src="https://github.com/user-attachments/assets/f1927ad0-6832-4bce-a0a2-299b527e8c45" />
+
+```
+---
+
+
+| Dashboard View                       | Job Entry Form                       |
 |--------------------------------------|--------------------------------------|
 | _To be added after Week 5_           | _To be added after Week 3_           |
+
 
 ---
 
