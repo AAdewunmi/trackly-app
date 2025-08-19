@@ -46,10 +46,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-m2
 
-      # Step 3: Make Maven wrapper executable
-      - name: Make mvnw executable
-        run: chmod +x mvnw
-
       - name: Build with Maven
         run: mvn -B clean install -Dspring.profiles.active=ci
 
