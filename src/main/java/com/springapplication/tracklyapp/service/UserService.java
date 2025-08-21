@@ -7,47 +7,37 @@ import com.springapplication.tracklyapp.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.Set;
-
-/**
- * Service for managing user registration and authentication.
- */
 @Service
 public class UserService {
 
-    private final UserRepository userRepository;
-    private final RoleRepository roleRepository;
+    private final UserRepository users;
+    private final RoleRepository roles;
     private final PasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository userRepository,
-                       RoleRepository roleRepository,
-                       PasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
+    public UserService(UserRepository users, RoleRepository roles, PasswordEncoder passwordEncoder) {
+        this.users = users;
+        this.roles = roles;
         this.passwordEncoder = passwordEncoder;
     }
 
-    /**
-     * Registers a new user with a hashed password and assigns default USER role.
-     * @param user The user to register
-     * @return persisted user
-     */
-    public User registerNewUser(User user) {
-        if (userRepository.existsByEmail(user.getEmail())) {
+    public User register(String fullName, String email, String rawPassword) {
+        String normEmail = email.trim().toLowerCase();
+        if (users.existsByEmail(normEmail)) {
             throw new IllegalArgumentException("Email already in use.");
         }
+        if (rawPassword == null || rawPassword.length() < 8 || !rawPassword.matches("^(?=.*[A-Za-z])(?=.*\\d).+$")) {
+            throw new IllegalArgumentException("Password must be at least 8 chars and include a letter and a number.");
+        }
 
-        String hashedPassword = passwordEncoder.encode(user.getPasswordHash());
-        user.setPasswordHash(hashedPassword);
+        String hash = passwordEncoder.encode(rawPassword);
+        Role roleUser = roles.findByName("ROLE_USER")
+                .orElseThrow(() -> new IllegalArgumentException("Role not found"));
 
-        Role userRole = roleRepository.findByName("ROLE_USER")
-                .orElseThrow(() -> new RuntimeException("Default role not found"));
-
-        Set<Role> roles = new HashSet<>();
-        roles.add(userRole);
-        user.setRoles(roles);
-
-        return userRepository.save(user);
+        User user = new User();
+        user.setFullName(fullName);
+        user.setEmail(normEmail);
+        user.setPasswordHash(hash);
+        user.getRoles().add(roleUser);
+        return users.save(user);
     }
 }

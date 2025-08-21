@@ -37,7 +37,7 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "role_id"),
             uniqueConstraints = @UniqueConstraint(name = "uq_user_roles_user_role", columnNames = {"user_id", "role_id"})
     )
-    private Set<Role> roles = new HashSet<>();
+    private Collection<Role> roles = new ArrayList<>();
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false)
@@ -55,6 +55,13 @@ public class User {
         this.passwordHash = passwordHash;
     }
 
+    public User(UUID userId, String fullName, String email, String passwordHash) {
+        this.userId = userId;
+        this.fullName = fullName;
+        this.email = email;
+        this.passwordHash = passwordHash;
+    }
+
     public UUID getUserId() { return userId; }
     public String getFullName() { return fullName; }
     public User setFullName(String fullName) { this.fullName = fullName; return this; }
@@ -63,8 +70,8 @@ public class User {
     public String getPasswordHash() { return passwordHash; }
     public User setPasswordHash(String passwordHash) { this.passwordHash = passwordHash; return this; }
 
-    public Set<Role> getRoles() { return Collections.unmodifiableSet(roles); }
-    public User setRoles(Set<Role> roles) { this.roles = roles; return this; }
+    public Collection<Role> getRoles() { return roles; }
+    public void setRoles(Collection<Role> roles) { this.roles = roles; }
     public User addRole(Role role) { this.roles.add(role); return this; }
     public User removeRole(Role role) { this.roles.remove(role); return this; }
 
@@ -82,4 +89,3 @@ public class User {
         return "User{userId=" + userId + ", email='" + email + "'}";
     }
 }
-

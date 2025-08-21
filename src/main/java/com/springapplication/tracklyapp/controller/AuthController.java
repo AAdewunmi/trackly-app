@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
  * These handlers return the view names that Thymeleaf resolves to templates:
  * <ul>
  *   <li>/login     -> templates/login.html</li>
- *   <li>/register  -> templates/register.html</li>
  * </ul>
  */
 @Controller
@@ -24,13 +23,5 @@ public class AuthController {
         return "login";
     }
 
-    /**
-     * Render the registration page.
-     * @return view name "register" (templates/register.html)
-     */
-    @GetMapping("/register")
-    public String register() {
-        return "register";
-    }
 }
 

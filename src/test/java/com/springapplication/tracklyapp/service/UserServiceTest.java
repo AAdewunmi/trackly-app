@@ -6,53 +6,70 @@ import com.springapplication.tracklyapp.repository.RoleRepository;
 import com.springapplication.tracklyapp.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Optional;
-import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.*;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 class UserServiceTest {
 
-    private UserRepository userRepository;
-    private RoleRepository roleRepository;
-    private UserService userService;
+    private static final int ENCODER_STRENGTH = 10;
+
+    private UserRepository users;
+    private RoleRepository roles;
+    private PasswordEncoder encoder;
+    private UserService service;
 
     @BeforeEach
     void setUp() {
-        userRepository = mock(UserRepository.class);
-        roleRepository = mock(RoleRepository.class);
-        userService = new UserService(userRepository, roleRepository, new BCryptPasswordEncoder());
+        users = mock(UserRepository.class);
+        roles = mock(RoleRepository.class);
+        encoder = new BCryptPasswordEncoder(ENCODER_STRENGTH);
+        service = new UserService(users, roles, encoder);
     }
 
     @Test
-    void testRegisterNewUser_shouldSaveUserWithHashedPassword() {
-        User user = new User();
-        user.setEmail("test@example.com");
-        user.setPasswordHash("plainpassword");
+    void register_hashesPassword_and_assignsRoleUser() {
+        when(users.existsByEmail("alice@example.com")).thenReturn(false);
+        when(roles.findByName("ROLE_USER")).thenReturn(Optional.of(new Role("ROLE_USER", "default")));
+        when(users.save(any(User.class))).thenAnswer(inv -> inv.getArgument(0));
 
-        when(userRepository.existsByEmail("test@example.com")).thenReturn(false);
-        when(roleRepository.findByName("ROLE_USER")).thenReturn(Optional.of(new Role("ROLE_USER", "default")));
-        when(userRepository.save(Mockito.any(User.class))).thenAnswer(invocation -> invocation.getArgument(0));
+        User u = service.register("Alice", "alice@example.com", "Password123");
 
-        User saved = userService.registerNewUser(user);
-
-        assertThat(saved.getPasswordHash()).isNotEqualTo("plainpassword");
-        assertThat(saved.getRoles()).hasSize(1);
-        verify(userRepository).save(saved);
+        assertThat(u.getPasswordHash()).isNotEqualTo("Password123");
+        assertThat(encoder.matches("Password123", u.getPasswordHash())).isTrue();
+        assertThat(u.getRoles()).extracting(Role::getName).contains("ROLE_USER");
     }
 
     @Test
-    void testRegisterNewUser_shouldThrowIfEmailExists() {
-        User user = new User();
-        user.setEmail("duplicate@example.com");
+    void register_rejectsDuplicateEmail() {
+        when(users.existsByEmail("bob@example.com")).thenReturn(true);
+        assertThatThrownBy(() -> service.register("Bob", "bob@example.com", "Password123"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("Email already in use");
+    }
 
-        when(userRepository.existsByEmail("duplicate@example.com")).thenReturn(true);
+    @Test
+    void register_rejectsWeakPassword() {
+        when(users.existsByEmail("weak@example.com")).thenReturn(false);
+        assertThatThrownBy(() -> service.register("Weak", "weak@example.com", "weak"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("Password must be at least 8 chars");
+    }
 
-        assertThrows(IllegalArgumentException.class, () -> userService.registerNewUser(user));
+    @Test
+    void register_throwsWhenRoleNotFound() {
+        when(users.existsByEmail("charlie@example.com")).thenReturn(false);
+        when(roles.findByName("ROLE_USER")).thenReturn(Optional.empty());
+
+        assertThatThrownBy(() -> service.register("Charlie", "charlie@example.com", "Password123"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("Role not found");
     }
 }

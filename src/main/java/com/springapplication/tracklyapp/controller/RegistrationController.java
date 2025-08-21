@@ -1,16 +1,17 @@
 package com.springapplication.tracklyapp.controller;
 
-import com.springapplication.tracklyapp.model.User;
 import com.springapplication.tracklyapp.service.UserService;
+import com.springapplication.tracklyapp.dto.RegistrationForm;
 import jakarta.validation.Valid;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * Controller for handling registration endpoints.
+ * MVC controller for user registration using a Thymeleaf form.
  */
-@RestController
-@RequestMapping("/api/auth")
+@Controller
 public class RegistrationController {
 
     private final UserService userService;
@@ -19,15 +20,23 @@ public class RegistrationController {
         this.userService = userService;
     }
 
-    /**
-     * Endpoint to register a new user.
-     * @param user user payload
-     * @return created user
-     */
+    @GetMapping("/register")
+    public String showRegistrationForm(Model model) {
+        model.addAttribute("registrationForm", new RegistrationForm());
+        return "register";
+    }
+
     @PostMapping("/register")
-    public ResponseEntity<User> registerUser(@Valid @RequestBody User user) {
-        User registered = userService.registerNewUser(user);
-        return ResponseEntity.ok(registered);
+    public String registerUser(@Valid @ModelAttribute("registrationForm") RegistrationForm form,
+                               BindingResult result,
+                               Model model) {
+        if (result.hasErrors()) return "register";
+        try {
+            userService.register(form.getFullName(), form.getEmail(), form.getPassword());
+            return "redirect:/login?registered";
+        } catch (IllegalArgumentException ex) {
+            model.addAttribute("errorMessage", ex.getMessage());
+            return "register";
+        }
     }
 }
-
