@@ -64,6 +64,7 @@ public class User {
     public User setPasswordHash(String passwordHash) { this.passwordHash = passwordHash; return this; }
 
     public Set<Role> getRoles() { return Collections.unmodifiableSet(roles); }
+    public User setRoles(Set<Role> roles) { this.roles = roles; return this; }
     public User addRole(Role role) { this.roles.add(role); return this; }
     public User removeRole(Role role) { this.roles.remove(role); return this; }
 
