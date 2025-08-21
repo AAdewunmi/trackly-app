@@ -13,7 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  * and authentication.
  */
 @Configuration
-public class SecurityBeans {
+public class PasswordConfig {
 
     /**
      * BCrypt with a reasonable default strength (10).
