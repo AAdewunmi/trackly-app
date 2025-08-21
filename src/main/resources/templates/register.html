@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Register - Trackly</title>
+</head>
+<body>
+<h1>Register</h1>
+<form method="post" th:action="@{/register}">
+    <input type="text" name="fullName" placeholder="Full Name"/>
+    <input type="email" name="email" placeholder="Email"/>
+    <input type="password" name="password" placeholder="Password"/>
+    <button type="submit">Register</button>
+</form>
+</body>
+</html>
