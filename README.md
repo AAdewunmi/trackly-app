@@ -25,15 +25,14 @@ manage stages like “Applied” or “Interviewing”, and visualize job search
 ```
 ## 📸 Screenshots
 
-Week 1 Task: Set up database, schema and seed data loaded, pgAdmin working (I am officially past the hardest infra setup hurdle.😎)
+### - Login page
 
-- Command Line (Docker Compose + PostgreSQL database)
+<img width="1542" height="895" alt="Image" src="https://github.com/user-attachments/assets/b57fd032-719c-4234-b971-0d363622edef" />
 
-<img width="930" height="548" alt="Image" src="https://github.com/user-attachments/assets/5d85fe9f-ab6f-4e9f-b198-684a457aad94" />
 
-- pgAdmin (GUI to view PostgreSQL database)
+### - Register page
 
-<img width="1909" height="889" alt="Image" src="https://github.com/user-attachments/assets/f1927ad0-6832-4bce-a0a2-299b527e8c45" />
+<img width="1380" height="895" alt="Image" src="https://github.com/user-attachments/assets/93a3062e-1c21-4fc2-8753-95c488a61b7d" />
 
 ```
 ---
