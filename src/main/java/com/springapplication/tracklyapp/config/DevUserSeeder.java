@@ -25,7 +25,7 @@ import java.util.Optional;
  * Never enable this in production.
  */
 @Component
-@Profile("dev")
+@Profile({"dev", "test-seed"})
 public class DevUserSeeder implements ApplicationRunner {
 
     private static final Logger log = LoggerFactory.getLogger(DevUserSeeder.class);
