@@ -1,3 +1,4 @@
+
 package com.springapplication.tracklyapp.config;
 
 import com.springapplication.tracklyapp.model.User;
@@ -5,6 +6,7 @@ import com.springapplication.tracklyapp.repository.RoleRepository;
 import com.springapplication.tracklyapp.repository.UserRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,24 +17,22 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Full-context test that verifies dev seeding creates admin + users with roles.
- * Requires the dev profile to activate the seeder.
+ * Only runs when PostgreSQL is available in the environment.
  */
 @SpringBootTest
 @ActiveProfiles("test-seed")
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE) // don't replace with H2
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @TestPropertySource(properties = {
-        // Point to CI Postgres service (matches ci.yml service env)
         "spring.datasource.url=jdbc:postgresql://localhost:5433/trackly",
         "spring.datasource.username=trackly",
         "spring.datasource.password=change-me",
         "spring.jpa.hibernate.ddl-auto=update",
-
-        // Deterministic seed inputs
         "trackly.seed.admin.email=admin@trackly.com",
         "trackly.seed.admin.password=Admin123!",
         "trackly.seed.user.emails=alice@trackly.com,bob@trackly.com",
         "trackly.seed.user.password=User123!"
 })
+@EnabledIfEnvironmentVariable(named = "POSTGRES_AVAILABLE", matches = "true")
 class DevUserSeederIntegrationTest {
 
     @Autowired private UserRepository users;
