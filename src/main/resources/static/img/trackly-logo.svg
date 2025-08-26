@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="48" viewBox="0 0 180 48" fill="none">
+  <rect x="2" y="10" width="36" height="28" rx="6" stroke="#2563eb" stroke-width="3"></rect>
+  <path d="M12 10v-3c0-2 2-4 4-4h8c2 0 4 2 4 4v3" stroke="#2563eb" stroke-width="3"></path>
+  <path d="M12 26l6 6 12-12" stroke="#0ea5e9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+  <text x="48" y="32" font-family="Inter, sans-serif" font-size="24" font-weight="700" fill="#0f172a">Trackly</text>
+</svg>
