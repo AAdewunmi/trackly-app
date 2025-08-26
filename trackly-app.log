@@ -4600,3 +4600,86 @@ Caused by: org.postgresql.util.PSQLException: FATAL: database "trackly_ci" does 
 2025-08-26T19:31:50.789+01:00  INFO 76088 --- [Trackly-App] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2025-08-26T19:31:50.791+01:00  INFO 76088 --- [Trackly-App] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2025-08-26T19:31:50.794+01:00  INFO 76088 --- [Trackly-App] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-08-26T19:37:32.595+01:00  INFO 76613 --- [Trackly-App] [main] c.s.t.TracklyAppApplicationTests         : Starting TracklyAppApplicationTests using Java 17.0.5 with PID 76613 (started by adrianadewunmi in /Users/adrianadewunmi/Intellij_Ultimate_Projects/Trackly-App)
+2025-08-26T19:37:32.597+01:00  INFO 76613 --- [Trackly-App] [main] c.s.t.TracklyAppApplicationTests         : No active profile set, falling back to 1 default profile: "default"
+2025-08-26T19:37:33.244+01:00  INFO 76613 --- [Trackly-App] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-08-26T19:37:33.246+01:00  INFO 76613 --- [Trackly-App] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-08-26T19:37:33.275+01:00  INFO 76613 --- [Trackly-App] [main] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.springapplication.tracklyapp.repository.RoleRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2025-08-26T19:37:33.277+01:00  INFO 76613 --- [Trackly-App] [main] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.springapplication.tracklyapp.repository.UserRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2025-08-26T19:37:33.277+01:00  INFO 76613 --- [Trackly-App] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 26 ms. Found 0 JDBC repository interfaces.
+2025-08-26T19:37:33.288+01:00  INFO 76613 --- [Trackly-App] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-08-26T19:37:33.289+01:00  INFO 76613 --- [Trackly-App] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-26T19:37:33.315+01:00  INFO 76613 --- [Trackly-App] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 21 ms. Found 2 JPA repository interfaces.
+2025-08-26T19:37:33.782+01:00  INFO 76613 --- [Trackly-App] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-26T19:37:33.831+01:00  INFO 76613 --- [Trackly-App] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.22.Final
+2025-08-26T19:37:33.865+01:00  INFO 76613 --- [Trackly-App] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-08-26T19:37:34.127+01:00  INFO 76613 --- [Trackly-App] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-26T19:37:34.158+01:00  INFO 76613 --- [Trackly-App] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-08-26T19:37:34.327+01:00  INFO 76613 --- [Trackly-App] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@563843f1
+2025-08-26T19:37:34.329+01:00  INFO 76613 --- [Trackly-App] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-08-26T19:37:34.365+01:00  WARN 76613 --- [Trackly-App] [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-08-26T19:37:34.387+01:00  INFO 76613 --- [Trackly-App] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 16.10
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-08-26T19:37:35.225+01:00  INFO 76613 --- [Trackly-App] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-26T19:37:35.359+01:00  INFO 76613 --- [Trackly-App] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-26T19:37:35.651+01:00  WARN 76613 --- [Trackly-App] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-26T19:37:35.717+01:00  INFO 76613 --- [Trackly-App] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-08-26T19:37:36.113+01:00  INFO 76613 --- [Trackly-App] [main] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-08-26T19:37:36.439+01:00  INFO 76613 --- [Trackly-App] [main] .w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2025-08-26T19:37:36.480+01:00  INFO 76613 --- [Trackly-App] [main] c.s.t.TracklyAppApplicationTests         : Started TracklyAppApplicationTests in 4.215 seconds (process running for 5.328)
+2025-08-26T19:37:36.853+01:00  INFO 76613 --- [Trackly-App] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-26T19:37:36.855+01:00  INFO 76613 --- [Trackly-App] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-08-26T19:37:36.859+01:00  INFO 76613 --- [Trackly-App] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-08-26T19:57:12.043+01:00  INFO 75721 --- [Trackly-App] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-08-26T19:57:14.100+01:00  INFO 75721 --- [Trackly-App] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-08-26T19:57:14.154+01:00  INFO 75721 --- [Trackly-App] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-26T19:57:14.210+01:00  INFO 75721 --- [Trackly-App] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-08-26T19:57:14.225+01:00  INFO 75721 --- [Trackly-App] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-08-26T19:57:19.848+01:00  INFO 77207 --- [Trackly-App] [restartedMain] c.s.tracklyapp.TracklyAppApplication     : Starting TracklyAppApplication using Java 17.0.5 with PID 77207 (/Users/adrianadewunmi/Intellij_Ultimate_Projects/Trackly-App/target/classes started by adrianadewunmi in /Users/adrianadewunmi/Intellij_Ultimate_Projects/Trackly-App)
+2025-08-26T19:57:19.850+01:00  INFO 77207 --- [Trackly-App] [restartedMain] c.s.tracklyapp.TracklyAppApplication     : No active profile set, falling back to 1 default profile: "default"
+2025-08-26T19:57:19.887+01:00  INFO 77207 --- [Trackly-App] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-08-26T19:57:19.887+01:00  INFO 77207 --- [Trackly-App] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-08-26T19:57:20.457+01:00  INFO 77207 --- [Trackly-App] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-08-26T19:57:20.458+01:00  INFO 77207 --- [Trackly-App] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-08-26T19:57:20.484+01:00  INFO 77207 --- [Trackly-App] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.springapplication.tracklyapp.repository.RoleRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2025-08-26T19:57:20.485+01:00  INFO 77207 --- [Trackly-App] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.springapplication.tracklyapp.repository.UserRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2025-08-26T19:57:20.486+01:00  INFO 77207 --- [Trackly-App] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 23 ms. Found 0 JDBC repository interfaces.
+2025-08-26T19:57:20.495+01:00  INFO 77207 --- [Trackly-App] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-08-26T19:57:20.496+01:00  INFO 77207 --- [Trackly-App] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-26T19:57:20.517+01:00  INFO 77207 --- [Trackly-App] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 16 ms. Found 2 JPA repository interfaces.
+2025-08-26T19:57:20.977+01:00  INFO 77207 --- [Trackly-App] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-08-26T19:57:20.989+01:00  INFO 77207 --- [Trackly-App] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-08-26T19:57:20.990+01:00  INFO 77207 --- [Trackly-App] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-08-26T19:57:21.021+01:00  INFO 77207 --- [Trackly-App] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-08-26T19:57:21.021+01:00  INFO 77207 --- [Trackly-App] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1134 ms
+2025-08-26T19:57:21.156+01:00  INFO 77207 --- [Trackly-App] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-26T19:57:21.202+01:00  INFO 77207 --- [Trackly-App] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.22.Final
+2025-08-26T19:57:21.236+01:00  INFO 77207 --- [Trackly-App] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-08-26T19:57:21.461+01:00  INFO 77207 --- [Trackly-App] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-26T19:57:21.485+01:00  INFO 77207 --- [Trackly-App] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-08-26T19:57:21.604+01:00  INFO 77207 --- [Trackly-App] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@78630660
+2025-08-26T19:57:21.605+01:00  INFO 77207 --- [Trackly-App] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-08-26T19:57:21.630+01:00  WARN 77207 --- [Trackly-App] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-08-26T19:57:21.645+01:00  INFO 77207 --- [Trackly-App] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 16.10
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-08-26T19:57:22.339+01:00  INFO 77207 --- [Trackly-App] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-26T19:57:22.381+01:00  INFO 77207 --- [Trackly-App] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-26T19:57:22.641+01:00  WARN 77207 --- [Trackly-App] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-26T19:57:22.676+01:00  INFO 77207 --- [Trackly-App] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-08-26T19:57:22.904+01:00  INFO 77207 --- [Trackly-App] [restartedMain] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-08-26T19:57:23.190+01:00  INFO 77207 --- [Trackly-App] [restartedMain] .w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2025-08-26T19:57:23.215+01:00  INFO 77207 --- [Trackly-App] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-08-26T19:57:23.249+01:00  INFO 77207 --- [Trackly-App] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-08-26T19:57:23.257+01:00  INFO 77207 --- [Trackly-App] [restartedMain] c.s.tracklyapp.TracklyAppApplication     : Started TracklyAppApplication in 3.772 seconds (process running for 4.557)
