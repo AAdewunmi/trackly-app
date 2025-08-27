@@ -9,7 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * MVC controller for user registration using a Thymeleaf form.
+ * Handles GET and POST requests for the registration page.
  */
 @Controller
 public class RegistrationController {
