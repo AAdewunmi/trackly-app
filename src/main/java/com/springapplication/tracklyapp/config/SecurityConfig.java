@@ -52,7 +52,7 @@ public class SecurityConfig {
      * Configures the main security filter chain.
      */
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http, CustomUserDetailsService uds) throws Exception {
         http
                 // CSRF enabled by default (can customize)
                 .csrf(csrf -> csrf
@@ -80,8 +80,10 @@ public class SecurityConfig {
                 )
                 // Remember-me config (optional)
                 .rememberMe(rm -> rm
-                        .key("trackly-unique-remember-me-key") // Use a real secret for prod!
-                        .tokenValiditySeconds(14 * 24 * 60 * 60) // 2 weeks
+                        .userDetailsService(uds)
+                        .key("SuperSecretTracklyRememberMeKey")   // Use env var in prod!
+                        .rememberMeParameter("remember-me")
+                        .tokenValiditySeconds(7 * 24 * 60 * 60)   // 7 days
                 )
                 // Session management (optional hardening)
                 .sessionManagement(session -> session
