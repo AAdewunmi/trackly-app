@@ -19,9 +19,9 @@ public class PasswordConfig {
      * BCrypt with a reasonable default strength (10).
      * Increase cost if needed depending on performance envelope.
      */
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(10);
-    }
+//    @Bean
+//    public PasswordEncoder passwordEncoder() {
+//        return new BCryptPasswordEncoder(10);
+//    }
 }
 
