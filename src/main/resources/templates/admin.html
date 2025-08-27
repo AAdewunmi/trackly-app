@@ -78,7 +78,7 @@
                         <div class="display-6 fw-bold mt-2" th:text="${metrics != null ? metrics.totalUsers : 0}">0</div>
                         <div class="small text-success mt-1" th:if="${metrics != null and metrics.deltaUsers != null}">
                             <i class="bi bi-arrow-up-right"></i>
-                            <span th:text="${metrics.deltaUsers} + '%'">0%</span> this week
+                            <span th:text="${metrics != null and metrics.deltaUsers != null ? metrics.deltaUsers : 0}"></span> this week
                         </div>
                     </div>
                 </div>
