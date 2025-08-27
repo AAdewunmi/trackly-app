@@ -44,10 +44,10 @@
                     <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
                     <div th:if="${logout}" class="alert alert-success" th:text="${logout}"></div>
                     <div th:if="${registered}" class="alert alert-success" th:text="${registered}"></div>
-                    <th:block th:if="${session}">
-                        <div class="alert alert-warning" th:text="${session}"></div>
-                    </th:block>
 
+                    <!-- - <th:block th:if="${session}">
+                    -     <div class="alert alert-warning" th:text="${session}"></div>
+                    - </th:block> -->
 
                     <form th:action="@{/login}" method="post" novalidate>
                         <!-- Guard CSRF to avoid template errors if CSRF disabled -->
