@@ -5,29 +5,176 @@
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <title>Admin Dashboard — Trackly</title>
 
-    <!-- Bootstrap -->
+    <!-- Favicon -->
+    <link rel="icon" href="/img/trackly-mark.svg" type="image/svg+xml"/>
+
+    <!-- Bootstrap 5 (light theme) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Shared styles -->
+    <link rel="stylesheet" href="/css/style.css"/>
 </head>
-<body class="bg-light">
+<body class="bg-light text-body">
 
-<div class="container py-5">
-    <div class="card shadow-sm">
-        <div class="card-body">
-            <h1 class="h4 mb-3">Admin Dashboard</h1>
+<!-- Top Navigation -->
+<div th:replace="~{fragments/nav :: mainNav}"></div>
 
-            <p>Welcome, <strong th:text="${email}">admin@example.com</strong></p>
-
-            <div>
-                <span class="badge bg-primary me-1"
-                      th:each="role : ${roles}"
-                      th:text="${role}">ROLE_ADMIN</span>
+<!-- Hero -->
+<section class="hero">
+    <div class="container">
+        <div class="row align-items-center g-4">
+            <div class="col-12 col-lg-8">
+                <span class="tag">Administration</span>
+                <h1 class="hero-title">Admin Dashboard</h1>
+                <p class="hero-sub mt-2">
+                    Monitor system health, user activity and manage administrative tasks.
+                </p>
             </div>
 
-            <hr/>
-            <p class="text-muted">This is a placeholder dashboard page. Build your admin features here.</p>
+            <!-- Signed-in context -->
+            <div class="col-12 col-lg-4">
+                <div class="auth-card">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div>
+                            <div class="small-muted">Signed in as</div>
+                            <div class="fw-semibold" th:text="${email}">admin@example.com</div>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-shield-lock" viewBox="0 0 16 16" aria-hidden="true">
+                            <path d="M5.5 7a1.5 1.5 0 1 1 2.95.354.5.5 0 0 0 .05.146V9H5V7.5c0-.173.03-.339.085-.492A1.5 1.5 0 0 1 5.5 7z"/>
+                            <path d="M8 0c-.69 0-1.912.27-3.134.788C3.651 1.078 2.5 1.72 2.5 3.5v3.982c0 1.58.67 3.087 1.793 4.15C5.53 12.948 6.75 13.5 8 13.5s2.47-.552 3.707-1.868C12.83 10.57 13.5 9.063 13.5 7.482V3.5c0-1.78-1.151-2.422-2.366-2.712C9.912.27 8.69 0 8 0z"/>
+                        </svg>
+                    </div>
+
+                    <!-- Role badges -->
+                    <div class="mt-3" th:if="${roles}">
+            <span class="badge text-bg-primary me-1" th:each="r : ${roles}"
+                  th:text="${#strings.startsWith(r, 'ROLE_') ? r : 'ROLE_' + r}">
+              ROLE_ADMIN
+            </span>
+                    </div>
+
+                    <!-- Sign out -->
+                    <form class="mt-3" th:action="@{/logout}" method="post">
+                        <button type="submit" class="btn btn-outline w-100">Sign out</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+</section>
 
+<!-- Metrics -->
+<section class="mb-4">
+    <div class="container">
+        <div class="row g-3 g-md-4">
+            <!-- Total Users -->
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <span class="text-muted">Total Users</span>
+                            <i class="bi bi-people"></i>
+                        </div>
+                        <div class="display-6 fw-bold mt-2" th:text="${metrics != null ? metrics.totalUsers : 0}">0</div>
+                        <div class="small text-success mt-1" th:if="${metrics != null and metrics.deltaUsers != null}">
+                            <i class="bi bi-arrow-up-right"></i>
+                            <span th:text="${metrics.deltaUsers} + '%'">0%</span> this week
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Active Sessions -->
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <span class="text-muted">Active Sessions</span>
+                            <i class="bi bi-activity"></i>
+                        </div>
+                        <div class="display-6 fw-bold mt-2" th:text="${metrics != null ? metrics.activeSessions : 0}">0</div>
+                        <div class="small text-muted mt-1">Past 15 min</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Error Rate -->
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <span class="text-muted">Error Rate</span>
+                            <i class="bi bi-exclamation-triangle"></i>
+                        </div>
+                        <div class="display-6 fw-bold mt-2">
+                            <span th:text="${metrics != null ? metrics.errorRate : 0.0}">0.0</span><span class="fs-5 text-muted">%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Job Queue -->
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <span class="text-muted">Job Queue</span>
+                            <i class="bi bi-stack"></i>
+                        </div>
+                        <div class="display-6 fw-bold mt-2" th:text="${metrics != null ? metrics.queueSize : 0}">0</div>
+                        <div class="small text-muted mt-1">pending</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Quick Navigation -->
+<section class="pb-5">
+    <div class="container">
+        <div class="row g-3 g-md-4">
+            <div class="col-12 col-md-6 col-lg-3">
+                <a class="card h-100 text-decoration-none card-hover" th:href="@{/users}">
+                    <div class="card-body">
+                        <h5 class="card-title mb-1">Manage Users</h5>
+                        <p class="card-text small text-muted mb-0">Create, update, suspend accounts.</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-3">
+                <a class="card h-100 text-decoration-none card-hover" th:href="@{/roles}">
+                    <div class="card-body">
+                        <h5 class="card-title mb-1">Roles &amp; Permissions</h5>
+                        <p class="card-text small text-muted mb-0">Assign roles and access control.</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-3">
+                <a class="card h-100 text-decoration-none card-hover" th:href="@{/reports}">
+                    <div class="card-body">
+                        <h5 class="card-title mb-1">Reports</h5>
+                        <p class="card-text small text-muted mb-0">Export KPIs and trends.</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-3">
+                <a class="card h-100 text-decoration-none card-hover" th:href="@{/settings}">
+                    <div class="card-body">
+                        <h5 class="card-title mb-1">Settings</h5>
+                        <p class="card-text small text-muted mb-0">System configuration.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Bootstrap + shared JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/js/index.js"></script>
 </body>
 </html>
