@@ -61,7 +61,7 @@ public class SecurityConfig {
                         .ignoringRequestMatchers("/h2-console/**")) // Example: permit H2 console in dev
                 // Authorize requests
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login", "/register", "/css/**", "/js/**", "/img/**", "/favicon.ico").permitAll()
+                        .requestMatchers("/login","/login/**","/register", "/css/**", "/js/**", "/img/**", "/favicon.ico").permitAll()
                         .anyRequest().authenticated()
                 )
                 // Form login config
