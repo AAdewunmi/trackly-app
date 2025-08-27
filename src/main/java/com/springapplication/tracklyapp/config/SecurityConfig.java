@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configurers.SessionMan
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 /**
  * Configures application security settings: authentication, authorisation, login/logout, session, CSRF.
@@ -56,6 +57,7 @@ public class SecurityConfig {
         http
                 // CSRF enabled by default (can customize)
                 .csrf(csrf -> csrf
+                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                         .ignoringRequestMatchers("/h2-console/**")) // Example: permit H2 console in dev
                 // Authorize requests
                 .authorizeHttpRequests(auth -> auth
